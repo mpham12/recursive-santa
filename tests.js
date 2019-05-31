@@ -1,17 +1,15 @@
-var chai = require('chai')
-var santa = require('./santa')
-var sinon = require('sinon')
-var sinonChai = require('sinon-chai')
-var expect = chai.expect
+import { deliverPresents } from './santa'
+import { spy } from 'sinon'
+import sinonChai from 'sinon-chai'
+import chai, { expect } from 'chai'
 
 chai.use(sinonChai)
 
+describe('Santa Claus', () => {
+  it('recursively delivers presents', () => {
+    var consoleLogSpy = spy(console, 'log')
 
-describe('Santa Claus', function () {
-  it('recursively delivers presents', function () {
-    var consoleLogSpy = sinon.spy(console, 'log')
-
-    santa.deliverPresents(['Rich', 'Peggy', 'David', 'Kevin', 'Will', 'Andrew', 'Christina'])
+    deliverPresents(['Rich', 'Peggy', 'David', 'Kevin', 'Will', 'Andrew', 'Christina'])
 
     expect(consoleLogSpy).to.have.callCount(7)
 
